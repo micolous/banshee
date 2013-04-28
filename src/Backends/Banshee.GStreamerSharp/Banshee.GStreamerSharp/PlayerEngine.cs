@@ -609,6 +609,7 @@ namespace Banshee.GStreamerSharp
                 Log.Error (String.Format ("GStreamer library error: {0}", (LibraryError)domain), false);
             }
 
+            Log.Error (String.Format ("GStreamer error debug: {0}", debug), false);
             OnEventChanged (new PlayerEventErrorArgs (error_message));
         }
 

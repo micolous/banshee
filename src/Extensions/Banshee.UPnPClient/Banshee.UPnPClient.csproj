@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -16,7 +16,7 @@
     <RootNamespace>Banshee.UPnPClient</RootNamespace>
     <AssemblyOriginatorKeyFile>.</AssemblyOriginatorKeyFile>
     <ReleaseVersion>1.3</ReleaseVersion>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -38,23 +38,17 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="gtk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
-      <Package>gtk-sharp-2.0</Package>
-    </Reference>
+    <Reference Include="gtk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
     <Reference Include="Mono.Posix" />
-    <Reference Include="gdk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
-      <Package>gtk-sharp-2.0</Package>
-    </Reference>
+    <Reference Include="gdk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
     <Reference Include="Mono.Ssdp">
       <HintPath>..\..\..\bin\bin\Mono.Ssdp.dll</HintPath>
     </Reference>
     <Reference Include="Mono.Upnp">
       <HintPath>..\..\..\bin\bin\Mono.Upnp.dll</HintPath>
-      <Package>mono.upnp</Package>
     </Reference>
     <Reference Include="Mono.Upnp.Dcp.MediaServer1">
       <HintPath>..\..\..\bin\bin\Mono.Upnp.Dcp.MediaServer1.dll</HintPath>
-      <Package>mono.upnp.dcp.mediaserver1</Package>
     </Reference>
     <Reference Include="System.Core" />
   </ItemGroup>
@@ -75,10 +69,10 @@
   <ProjectExtensions>
     <MonoDevelop>
       <Properties>
-        <MonoDevelop.Autotools.MakefileInfo IntegrationEnabled="true" RelativeMakefileName="Makefile.am">
-          <BuildFilesVar Sync="true" Name="SOURCES" />
+        <MonoDevelop.Autotools.MakefileInfo IntegrationEnabled="True" RelativeMakefileName="Makefile.am">
+          <BuildFilesVar Sync="True" Name="SOURCES" />
           <DeployFilesVar />
-          <ResourcesVar Sync="true" Name="RESOURCES" />
+          <ResourcesVar Sync="True" Name="RESOURCES" />
           <OthersVar />
           <GacRefVar />
           <AsmRefVar />

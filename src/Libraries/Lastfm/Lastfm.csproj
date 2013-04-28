@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -20,7 +20,6 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <OutputPath>..\..\..\bin</OutputPath>
-    <WarningLevel>4</WarningLevel>
     <Optimize>false</Optimize>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Windows|AnyCPU' ">
@@ -28,22 +27,16 @@
     <DebugType>full</DebugType>
     <PlatformTarget>x86</PlatformTarget>
     <OutputPath>..\..\..\bin\bin</OutputPath>
-    <WarningLevel>4</WarningLevel>
     <Optimize>false</Optimize>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="Mono.Posix">
-      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\bin\bin\Mono.Posix.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml" />
-    <Reference Include="glib-sharp">
-      <SpecificVersion>False</SpecificVersion>
-    </Reference>
-    <Reference Include="gdk-sharp">
-      <SpecificVersion>False</SpecificVersion>
-    </Reference>
+    <Reference Include="glib-sharp" />
+    <Reference Include="gdk-sharp" />
     <Reference Include="Mono.Security">
       <HintPath>..\..\..\bin\bin\Mono.Security.dll</HintPath>
     </Reference>
@@ -89,8 +82,8 @@
   <ProjectExtensions>
     <MonoDevelop>
       <Properties>
-        <MonoDevelop.Autotools.MakefileInfo IntegrationEnabled="true" RelativeMakefileName="Makefile.am">
-          <BuildFilesVar Sync="true" Name="SOURCES" />
+        <MonoDevelop.Autotools.MakefileInfo IntegrationEnabled="True" RelativeMakefileName="Makefile.am">
+          <BuildFilesVar Sync="True" Name="SOURCES" />
           <DeployFilesVar />
           <ResourcesVar />
           <OthersVar />

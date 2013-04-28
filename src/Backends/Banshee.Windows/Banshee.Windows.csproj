@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -9,7 +9,7 @@
     <UseParentDirectoryAsNamespace>true</UseParentDirectoryAsNamespace>
     <AssemblyName>Banshee.Windows</AssemblyName>
     <SchemaVersion>2.0</SchemaVersion>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <Optimize>true</Optimize>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -20,7 +20,6 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
-    <WarningLevel>4</WarningLevel>
     <Optimize>false</Optimize>
     <OutputPath>..\..\..\bin</OutputPath>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
@@ -29,7 +28,6 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <PlatformTarget>x86</PlatformTarget>
-    <WarningLevel>4</WarningLevel>
     <Optimize>false</Optimize>
     <OutputPath>..\..\..\bin\bin</OutputPath>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
@@ -63,11 +61,8 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="gtk-sharp">
-      <SpecificVersion>False</SpecificVersion>
-    </Reference>
+    <Reference Include="gtk-sharp" />
     <Reference Include="Mono.Posix">
-      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\bin\bin\Mono.Posix.dll</HintPath>
     </Reference>
     <Reference Include="gio-sharp, Version=2.14.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
@@ -79,8 +74,7 @@
     <Reference Include="atk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Management" />
-    <Reference Include="System.Core">
-    </Reference>
+    <Reference Include="System.Core" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq">
@@ -117,9 +111,9 @@
     <MonoDevelop>
       <Properties>
         <MonoDevelop.Autotools.MakefileInfo RelativeMakefileName="Makefile.am">
-          <BuildFilesVar Sync="true" Name="SOURCES" />
+          <BuildFilesVar Sync="True" Name="SOURCES" />
           <DeployFilesVar />
-          <ResourcesVar Sync="true" Name="RESOURCES" />
+          <ResourcesVar Sync="True" Name="RESOURCES" />
           <OthersVar />
           <GacRefVar />
           <AsmRefVar />

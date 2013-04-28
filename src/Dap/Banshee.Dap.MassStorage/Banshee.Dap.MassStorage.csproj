@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <AssemblyName>Banshee.Dap.MassStorage</AssemblyName>
     <SchemaVersion>2.0</SchemaVersion>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <Optimize>true</Optimize>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -19,7 +19,6 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
-    <WarningLevel>4</WarningLevel>
     <Optimize>false</Optimize>
     <OutputPath>..\..\..\bin</OutputPath>
   </PropertyGroup>
@@ -27,7 +26,6 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <PlatformTarget>x86</PlatformTarget>
-    <WarningLevel>4</WarningLevel>
     <Optimize>false</Optimize>
     <OutputPath>..\..\..\bin\bin</OutputPath>
   </PropertyGroup>
@@ -85,10 +83,10 @@
   <ProjectExtensions>
     <MonoDevelop>
       <Properties>
-        <MonoDevelop.Autotools.MakefileInfo IntegrationEnabled="true" RelativeMakefileName="Makefile.am">
-          <BuildFilesVar Sync="true" Name="SOURCES" />
+        <MonoDevelop.Autotools.MakefileInfo IntegrationEnabled="True" RelativeMakefileName="Makefile.am">
+          <BuildFilesVar Sync="True" Name="SOURCES" />
           <DeployFilesVar />
-          <ResourcesVar Sync="true" Name="RESOURCES" />
+          <ResourcesVar Sync="True" Name="RESOURCES" />
           <OthersVar />
           <GacRefVar />
           <AsmRefVar />
@@ -99,21 +97,14 @@
   </ProjectExtensions>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="glib-sharp">
-      <SpecificVersion>False</SpecificVersion>
-    </Reference>
-    <Reference Include="gdk-sharp">
-      <SpecificVersion>False</SpecificVersion>
-    </Reference>
+    <Reference Include="glib-sharp" />
+    <Reference Include="gdk-sharp" />
     <Reference Include="Mono.Posix">
-      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\bin\bin\Mono.Posix.dll</HintPath>
     </Reference>
     <Reference Include="Mono.Addins">
-      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\bin\bin\Mono.Addins.dll</HintPath>
     </Reference>
-    <Reference Include="System.Core">
-    </Reference>
+    <Reference Include="System.Core" />
   </ItemGroup>
 </Project>
