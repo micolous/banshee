@@ -24,11 +24,10 @@
     <Package Id="*" Compressed="yes" Description="$(var.ProductLongName) $(var.ProductVersionText)" InstallerVersion="200" ShortNames="no" Manufacturer="$(var.Manufacturer)" />
     <Media Id="1" Cabinet="media1.cab" EmbedCab="yes" CompressionLevel="high"/>
 
-    <!-- Ensure .Net 3.5 SP1 or higher is installed -->
-    <PropertyRef Id="NETFRAMEWORK35_SP_LEVEL" />
+    <!-- Ensure .Net 4.0 or higher is installed -->
     <PropertyRef Id="NETFRAMEWORK40FULL" />
-    <Condition Message="This setup requires the .NET Framework 3.5 SP1 or higher to be installed.">
-      <![CDATA[Installed OR (NETFRAMEWORK35_SP_LEVEL and NOT NETFRAMEWORK35_SP_LEVEL = "#0") OR NETFRAMEWORK40FULL]]>
+    <Condition Message="This setup requires the .NET Framework 4.0 or higher to be installed.">
+      <![CDATA[Installed OR NETFRAMEWORK40FULL]]>
     </Condition>
 
     <!-- Define which previous versions we should be able to upgrade/replace -->
@@ -99,13 +98,13 @@
       <ComponentGroupRef Id="etc" />
       <ComponentGroupRef Id="lib" />
 
-      <ComponentGroupRef Id="share\banshee" />
-      <ComponentGroupRef Id="share\icons" />
-      <ComponentGroupRef Id="share\themes" />
+      <ComponentGroupRef Id="share_banshee" />
+      <ComponentGroupRef Id="share_icons" />
+      <ComponentGroupRef Id="share_themes" />
     </Feature>
 
     <Feature Id="TranslationsFeature" Title="Banshee Translations" Level="1">
-      <ComponentGroupRef Id="share\locale" />
+      <ComponentGroupRef Id="share_locale" />
     </Feature>
 
     <!-- Sequences -->

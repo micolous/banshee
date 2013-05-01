@@ -50,7 +50,7 @@ WScript.Echo ("Setup successfully generated");
 function heatDir (dir)
 {
   var wxi_name = dir.replace (/\\/, '_');
-  var params = ' -cg ' + dir + ' -scom -sreg -ag -sfrag -indent 2 -var var.' + wxi_name + 'Dir';
+  var params = ' -cg ' + wxi_name + ' -scom -sreg -ag -sfrag -indent 2 -var var.' + wxi_name + 'Dir';
  
   if (wxi_name.indexOf ("share") == 0) {
 	  params += ' -dr SHARELOCATION ';
