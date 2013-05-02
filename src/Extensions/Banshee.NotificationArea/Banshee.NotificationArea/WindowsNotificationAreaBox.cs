@@ -74,10 +74,10 @@ namespace Banshee.NotificationArea
             Bitmap b = (Bitmap)tc.ConvertFrom (iconBuf.SaveToBuffer("png"));
             icon.Icon = System.Drawing.Icon.FromHandle(b.GetHicon());
 
-            // Note: Windows has a maximum tooltip length on NotifyIcon of 64 bytes.
+            // Note: Windows has a maximum tooltip length on NotifyIcon of 63 bytes.
             // It will throw an exception if it is longer. This is **not** documented on MSDN.
-            icon.Text = TrimString(window.Title, 64);
-            window.TitleChanged += delegate { icon.Text = TrimString(window.Title, 64); };
+            icon.Text = TrimString(window.Title, 63);
+            window.TitleChanged += delegate { icon.Text = TrimString(window.Title, 63); };
 
             icon.MouseClick += HandleMouseClick;
 
@@ -141,8 +141,8 @@ namespace Banshee.NotificationArea
             //
             // As the tooltip length limit isn't even documented, this is a guess!!
             icon.ShowBalloonTip(4500,
-                                TrimString(current_track.DisplayTrackTitle, 64),
-                                TrimString(message, 256),
+                                TrimString(current_track.DisplayTrackTitle, 63),
+                                TrimString(message, 255),
                                 ToolTipIcon.None);
 
         }
