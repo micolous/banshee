@@ -50,8 +50,10 @@ using Hyena;
 using Hyena.Gui;
 using Hyena.Widgets;
 
-namespace Banshee.NotificationArea
-{
+namespace Banshee.NotificationArea {
+ 
+    public delegate void TrackNotificationEventHandler(object sender, TrackInfo new_track);
+
     public class NotificationAreaService : IExtensionService
     {
         private INotificationAreaBox notif_area;
@@ -74,6 +76,8 @@ namespace Banshee.NotificationArea
         private Notification current_nf;
 
         private const int icon_size = 42;
+
+        public event TrackNotificationEventHandler TrackNotification;
 
         public NotificationAreaService ()
         {
@@ -208,12 +212,19 @@ namespace Banshee.NotificationArea
 
         private bool BuildNotificationArea ()
         {
+#if WIN32
+            if (Environment.OSVersion.Platform == PlatformID.Win32NT) {
+                notif_area = new WindowsNotificationAreaBox(elements_service.PrimaryWindow, this);
+                Log.Debug("Using WindowsNotificationAreaBox");
+            }
+#else
             if (Environment.OSVersion.Platform == PlatformID.Unix) {
                 try {
                     notif_area = new X11NotificationAreaBox ();
                 } catch {
                 }
             }
+#endif
 
             if (notif_area == null) {
                 notif_area = new GtkNotificationAreaBox (elements_service.PrimaryWindow);
@@ -412,6 +423,12 @@ namespace Banshee.NotificationArea
             }
         }
 
+        protected virtual void OnTrackNotification(TrackInfo current_track) {
+            if (TrackNotification != null) {
+                TrackNotification(this, current_track);
+            }
+        }
+
         private void ShowTrackNotification ()
         {
             // This has to happen before the next if, otherwise the last_* members aren't set correctly.
@@ -432,6 +449,9 @@ namespace Banshee.NotificationArea
                     return;
                 }
             }
+
+            // fire off event that allows other implementations of ShowTrackNotification.
+            OnTrackNotification(current_track);
 
             bool is_notification_daemon = false;
             try {
@@ -488,20 +508,40 @@ namespace Banshee.NotificationArea
             }
         }
 
-        private string MarkupFormat (string fmt, params string [] args)
+
+        private static string MarkupFormat (string fmt, bool include_markup = true, params string [] args)
         {
             string [] new_args = new string [args.Length + 2];
-            new_args[0] = "<i>";
-            new_args[1] = "</i>";
+            if (include_markup) {
+                new_args[0] = "<i>";
+                new_args[1] = "</i>";
+            } else {
+                // Windows notifications don't use markup, so don't escape or include markup
+                new_args[0] = "";
+                new_args[1] = "";
+            }
 
             for (int i = 0; i < args.Length; i++) {
-                new_args[i + 2] = GLib.Markup.EscapeText (args[i]);
+                if (include_markup) {
+                    new_args[i + 2] = GLib.Markup.EscapeText (args[i]);
+                } else {
+                    new_args[i + 2] = args[i];
+                }
+
             }
 
             return String.Format (fmt, new_args);
         }
 
-        private string GetByFrom (string artist, string display_artist, string album, string display_album)
+        /// <summary>
+        /// Formats the "by" and "from" strings for a track suitable for display in a notification.
+        /// </summary>
+        /// <param name="artist">Artist of the track.  If null or empty, this will show no artist information.</param>
+        /// <param name="display_artist">Display artist of the track.</param>
+        /// <param name="album">Album of the track.  If null or empty, this will show no album information.</param>
+        /// <param name="display_album">Display album of the track</param>
+        /// <param name="include_markup">If set to <c>true</c>, this will include HTML-like markup for the "by" and "from" labels, and escape the displayed artist names.  Set to <c>false</c> if not using this string with an output that supports markup.</param>
+        internal static string GetByFrom (string artist, string display_artist, string album, string display_album, bool include_markup = true)
         {
             bool has_artist = !String.IsNullOrEmpty (artist);
             bool has_album = !String.IsNullOrEmpty (album);
@@ -511,15 +551,15 @@ namespace Banshee.NotificationArea
                 // Translators: {0} and {1} are for markup so ignore them, {2} and {3}
                 // are Artist Name and Album Title, respectively;
                 // e.g. 'by Parkway Drive from Killing with a Smile'
-                markup = MarkupFormat (Catalog.GetString ("{0}by{1} {2}\n{0}from{1} {3}"), display_artist, display_album);
+                markup = MarkupFormat (Catalog.GetString ("{0}by{1} {2}\n{0}from{1} {3}"), include_markup, display_artist, display_album);
             } else if (has_album) {
                 // Translators: {0} and {1} are for markup so ignore them, {2} is for Album Title;
                 // e.g. 'from Killing with a Smile'
-                markup = MarkupFormat (Catalog.GetString ("{0}from{1} {2}"), display_album);
+                markup = MarkupFormat (Catalog.GetString ("{0}from{1} {2}"), include_markup, display_album);
             } else {
                 // Translators: {0} and {1} are for markup so ignore them, {2} is for Artist Name;
                 // e.g. 'by Parkway Drive'
-                markup = MarkupFormat (Catalog.GetString ("{0}by{1} {2}"), display_artist);
+                markup = MarkupFormat (Catalog.GetString ("{0}by{1} {2}"), include_markup, display_artist);
             }
             return markup;
         }
