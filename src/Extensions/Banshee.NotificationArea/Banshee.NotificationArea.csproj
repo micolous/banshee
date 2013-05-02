@@ -30,7 +30,7 @@
     <PlatformTarget>x86</PlatformTarget>
     <Optimize>false</Optimize>
     <OutputPath>..\..\..\bin\bin</OutputPath>
-    <DefineConstants>INTERNAL_NOTIFY_SHARP</DefineConstants>
+    <DefineConstants>INTERNAL_NOTIFY_SHARP WIN32</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Core\Banshee.Core\Banshee.Core.csproj">
@@ -51,7 +51,7 @@
     </ProjectReference>
     <Reference Include="atk-sharp" />
     <Reference Include="Mono.Cairo">
-      <Package>C:\Users\michael\Documents\Projects\banshee\bin\bin\Mono.Cairo.dll</Package>
+      <HintPath>..\..\..\bin\bin\Mono.Cairo.dll</HintPath>
     </Reference>
     <Reference Include="dbus-sharp">
       <HintPath>..\..\..\bin\bin\dbus-sharp.dll</HintPath>

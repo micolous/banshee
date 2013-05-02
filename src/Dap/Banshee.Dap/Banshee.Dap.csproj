@@ -64,12 +64,14 @@
     <Reference Include="System" />
     <Reference Include="gtk-sharp" />
     <Reference Include="Mono.Cairo">
-      <Package>C:\Users\michael\Documents\Projects\banshee\bin\bin\Mono.Cairo.dll</Package>
+      <HintPath>..\..\..\bin\bin\Mono.Cairo.dll</HintPath>
     </Reference>
     <Reference Include="System.Core" />
     <Reference Include="glib-sharp" />
     <Reference Include="atk-sharp" />
-    <Reference Include="Mono.Posix" />
+    <Reference Include="Mono.Posix">
+	  <HintPath>..\..\..\bin\bin\Mono.Posix.dll</HintPath>
+	</Reference>
     <Reference Include="gdk-sharp" />
     <Reference Include="Mono.Addins">
       <HintPath>..\..\..\bin\bin\Mono.Addins.dll</HintPath>
