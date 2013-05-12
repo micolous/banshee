@@ -43,18 +43,16 @@ namespace Banshee.NotificationArea
     {
 
         NotifyIcon icon;
+        /*
         private TrackInfo current_track;
         private string notify_last_title;
         private string notify_last_artist;
+        */
         private MouseEventArgs _lastRightClick = null;
 
 
         public event EventHandler Disconnected;
-        
-        public event EventHandler Activated {
-            add { icon.Click += value; }
-            remove { icon.Click -= value; }
-        }
+        public event EventHandler Activated;
         
         public event PopupMenuHandler PopupMenuEvent;
         
@@ -99,12 +97,24 @@ namespace Banshee.NotificationArea
 
         void HandleMouseClick (object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Right) {
+            switch (e.Button) {
+            case MouseButtons.Right:
                 // fire off context menu event
                 // we don't need to send arguments because they're not used!
                 _lastRightClick = e;
                 PopupMenuEvent(this, null);
+                break;
+
+            case MouseButtons.Left:
+                // show main banshee window
+                OnActivated();
+                break;
             }
+        }
+
+        void OnActivated() {
+            if (this.Activated != null)
+                this.Activated(this, null);
         }
         
         public void PositionMenu (Gtk.Menu menu, out int x, out int y, out bool push_in)
@@ -140,6 +150,9 @@ namespace Banshee.NotificationArea
             // correspond to powers of 2 (64 and 256 respectively).
             //
             // As the tooltip length limit isn't even documented, this is a guess!!
+            //
+            // The only way we know there is a problem is when an exception is thrown.
+            // Basic testing indicates that these limits are acceptable.
             icon.ShowBalloonTip(4500,
                                 TrimString(current_track.DisplayTrackTitle, 63),
                                 TrimString(message, 255),
