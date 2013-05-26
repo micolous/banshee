@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Addin 
+    id="Banshee.GrowlNotifications"
+    version="1.0"
+    compatVersion="1.0"
+    copyright="© 2013 Michael Farrell. Licensed under the MIT X11 license."
+    name="Growl Integration"
+    category="Utilities"
+    description="Displays notifications using Growl for Windows"
+    author="Michael Farrell"
+    url="http://banshee.fm/"
+    defaultEnabled="true">
+
+  <Dependencies>
+    <Addin id="Banshee.Services" version="1.0"/>
+    <Addin id="Banshee.ThickClient" version="1.0"/>
+  </Dependencies>
+
+  <Extension path="/Banshee/ServiceManager/Service">
+    <Service class="Banshee.GrowlNotifications.GrowlService"/>
+  </Extension>
+  
+</Addin>
